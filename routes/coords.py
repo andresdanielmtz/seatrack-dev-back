@@ -7,7 +7,7 @@ coords_blueprint = Blueprint("coords", __name__)
 
 @coords_blueprint.route("/coords", methods=["GET", "POST"])
 def coords():
-    conn = get_coord_db_connection(current_app)
+    conn = get_coord_db_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM Location")
 
@@ -29,7 +29,7 @@ def register_coord():
     lng = request.json.get("longitude")
     name = request.json.get("name")
 
-    conn = get_coord_db_connection(current_app)
+    conn = get_coord_db_connection()
     cursor = conn.cursor()
 
     print(f"REGISTERING: {lat}, {lng}, {name}", file=sys.stderr)
