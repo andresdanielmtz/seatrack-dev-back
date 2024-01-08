@@ -1,5 +1,6 @@
 from flask import Blueprint
 import sqlite3
+from ..utils.utils import get_coord_db_connection
 
 profile_blueprint = Blueprint("profile", __name__)
 
@@ -16,10 +17,8 @@ def profile():
 
 @profile_blueprint.route("/profile/coords")
 def profile_coords():
-    conn = sqlite3.connect("coords.db")
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM Location")
-    rows = cursor.fetchall()
+    conn = get_coord_db_connection(profile_blueprint)
+    rows = conn.execute("SELECT * FROM Location").fetchall()
     conn.close()
     response_body = []
     for row in rows:
