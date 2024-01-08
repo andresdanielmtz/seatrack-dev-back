@@ -36,7 +36,8 @@ def login():
         response = {"message": "Internal Server Error", "status": 500}
 
     finally:
-        conn.close()
+        if conn:
+            conn.close()
 
     print(f"LOGIN: {response['message']}", file=sys.stderr)
     return jsonify(response), response["status"]
