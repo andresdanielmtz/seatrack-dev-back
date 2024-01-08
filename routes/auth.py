@@ -4,13 +4,14 @@ import sys
 
 auth_blueprint = Blueprint("auth", __name__)
 
+
 @auth_blueprint.route("/login", methods=["POST"])
 def login():
     username = request.json.get("username")
     password = request.json.get("password")
     print("LOGGING IN: ", username, file=sys.stderr)
     try:
-        conn = get_user_db_connection(current_app)
+        conn = get_user_db_connection()
         cursor = conn.cursor()
 
         # Retrieve the hashed password for the provided username
@@ -40,17 +41,19 @@ def login():
     print(f"LOGIN: {response['message']}", file=sys.stderr)
     return jsonify(response), response["status"]
 
+
 @auth_blueprint.route("/logout", methods=["GET"])
 def logout():
     session.clear()
     return jsonify({"message": "Logged out"})
+
 
 @auth_blueprint.route("/register", methods=["POST"])
 def register():
     username = request.json.get("username")
     password = request.json.get("password")
 
-    conn = get_user_db_connection(current_app)
+    conn = get_user_db_connection()
     cursor = conn.cursor()
 
     # Check if username already exists
