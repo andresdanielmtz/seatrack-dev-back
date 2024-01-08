@@ -9,4 +9,11 @@ docs/_build/
 dist/
 venv/
 start_db.sql/
-__pycache__
+__pycache__/
+
+# PyCharm
+*.iml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
