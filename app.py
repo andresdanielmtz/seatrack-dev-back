@@ -42,7 +42,7 @@ def init_db():
 
 init_db()
 
-CORS(app)
+CORS(app, supports_credentials=True)
 Session(app)
 
 app.register_blueprint(auth_blueprint)
