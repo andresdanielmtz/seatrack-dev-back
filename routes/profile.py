@@ -6,7 +6,7 @@ profile_blueprint = Blueprint("profile", __name__)
 
 @profile_blueprint.route("/")
 def index():
-    return "Hello World!"
+    return "Hello World!, Version 0.0.1\n"
 
 
 @profile_blueprint.route("/profile")
