@@ -9,3 +9,4 @@ docs/_build/
 dist/
 venv/
 start_db.sql/
+__pycache__
