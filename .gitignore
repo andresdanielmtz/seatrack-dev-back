@@ -17,3 +17,4 @@ __pycache__/
 .idea/tasks.xml
 .idea/dictionaries
 .idea/vcs.xml
+flask_session/
