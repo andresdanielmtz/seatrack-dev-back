@@ -4,6 +4,7 @@ from flask_session import Session
 import os
 import sqlite3
 
+from utils.initdb import init_db
 from routes.auth import auth_blueprint
 from routes.coords import coords_blueprint
 from routes.profile import profile_blueprint
@@ -20,24 +21,6 @@ app.config["PERMANENT_SESSION_LIFETIME"] = (
 app.config["COORDS_DATABASE"] = os.path.join(app.root_path, "coords.db")
 app.config["USERBASE_DATABASE"] = os.path.join(app.root_path, "userbase.db")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
-
-
-def init_db():
-    # Initialize coords.db
-    conn_coords = sqlite3.connect("coords.db")
-    conn_coords.execute(
-        "CREATE TABLE IF NOT EXISTS Location (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, latitude REAL NOT NULL, longitude REAL NOT NULL)"
-    )
-    conn_coords.commit()
-    conn_coords.close()
-
-    # Initialize userbase.db
-    conn_users = sqlite3.connect("userbase.db")
-    conn_users.execute(
-        "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)"
-    )
-    conn_users.commit()
-    conn_users.close()
 
 
 init_db()
