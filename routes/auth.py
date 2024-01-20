@@ -9,7 +9,7 @@ auth_blueprint = Blueprint("auth", __name__)
 def login():
     username = request.json.get("username")
     password = request.json.get("password")
-    print("LOGGING IN: ", username, file=sys.stderr)
+    print("LOGGING IN: ", username, "\n", password, file=sys.stderr)
     try:
         conn = get_user_db_connection()
         cursor = conn.cursor()
