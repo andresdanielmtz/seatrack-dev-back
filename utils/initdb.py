@@ -3,7 +3,7 @@
 import sqlite3
 
 
-def init_db():
+def init_db() -> None:
     # Initialize coords.db
     conn_coords = sqlite3.connect("coords.db")
     conn_coords.execute(
@@ -15,7 +15,7 @@ def init_db():
     # Initialize userbase.db
     conn_users = sqlite3.connect("userbase.db")
     conn_users.execute(
-        "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)"
+        "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT UNIQUE, password TEXT)"
     )
     conn_users.commit()
     conn_users.close()

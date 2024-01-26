@@ -4,12 +4,22 @@ import os
 import sys
 
 
-def hash_password(password):
+def hash_password(password) -> str:
+    """
+    Hashes the given password using SHA-256 algorithm.
+
+    Args:
+        password (str): The password to be hashed.
+
+    Returns:
+        str: The hashed password.
+
+    """
     return hashlib.sha256(password.encode()).hexdigest()
 
 
 # Route to establish a connection to the SQLite database
-def get_coord_db_connection():
+def get_coord_db_connection() -> sqlite3.Connection:
     root_path = os.getcwd()
     db_path = os.path.join(root_path, "coords.db")
     conn = sqlite3.connect(db_path)
@@ -22,7 +32,7 @@ def get_coord_db_connection():
     return conn
 
 
-def get_user_db_connection():
+def get_user_db_connection() -> sqlite3.Connection:
     root_path = os.getcwd()
     db_path = os.path.join(root_path, "userbase.db")
     conn = sqlite3.connect(db_path)
