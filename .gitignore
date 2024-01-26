@@ -11,6 +11,7 @@ venv/
 start_db.sql/
 __pycache__/
 
+.DS_Store
 # PyCharm
 *.iml
 .idea/workspace.xml
