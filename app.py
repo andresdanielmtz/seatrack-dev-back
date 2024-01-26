@@ -2,7 +2,6 @@ from flask import Flask
 from flask_cors import CORS
 from flask_session import Session
 import os
-import sqlite3
 
 from utils.initdb import init_db
 from routes.auth import auth_blueprint
